@@ -1,24 +1,16 @@
 import {Game} from '../lib/game.js';
 
 import commandLifeTile from './commandLifeTile.vue.js';
+import onresizeClass from '../mixins/onresizeClass.js';
 
 export default  {
+	mixins:[onresizeClass],
     data: function (){
       return{
-	 iGame : Game,
-	 game:Game.state,
-   	  text : Game.locale.text,
+		iGame : Game,
+		game:Game.state,
+		text : Game.locale.text
       }
-	},
-	computed:{
-		getScreenWidth:function(){
-			return window.screen.width;
-		},
-		headerFontSize:function(){
-			return {
-				fontSize:this.getScreenWidth<1000?'10px':'30px'
-			}
-		}
 	},
 	methods:{
 		rainCooldownStyle:function(){
@@ -33,33 +25,34 @@ export default  {
 			}
 		}
 	},
+	
     components:{
 	lifeTile: commandLifeTile
     },
     template: `
 	<div>
-		<div class="col-3 col-sm-12" :style="headerFontSize">
+		<div :style={fontSize:commandsHeaderFontSize} :class=commandsHeaderClass>
 			<b>{{text.pathMenu}}</b>
 		</div>
-		<div class="col-3 col-sm-6" v-on:click="iGame.buy('broken_glass')">
+		<div :class=commandClass v-on:click="iGame.buy('broken_glass')">
 		{{ text.broken_glass }}
 		10$
 		</div>
-		<div class="col-3 col-sm-6" v-on:click="iGame.buy('oil_rain')" :disabled="game.rainTime">
+		<div :class=commandClass v-on:click="iGame.buy('oil_rain')" :disabled="game.rainTime">
 		<div :style="rainCooldownStyle()"></div>
 		{{ text.oil_rain }}	
 		250$
 		</div>
-		<div class="col-3 col-sm-6">
+		<div :class=commandClass>
 			
 		</div>
-		<div class="col-3 col-sm-6">
+		<div :class=commandClass>
 			
 		</div>
-		<div class="col-3 col-sm-6">
+		<div :class=commandClass>
 			
 		</div>
-		<div class="col-3 col-sm-6" v-if="getScreenWidth<700">
+		<div :class=commandClass v-if="!isHorizontal">
 				
 		</div>
 		<life-tile></life-tile>

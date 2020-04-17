@@ -47,20 +47,21 @@
 	height:100%;
 }
 
-#commands-box div div
-{
-	height:50%;
-}
-
 #play-box > div{
-	background:white;
-	height:calc(13.5vmin - 1px);
-	width:81vmin;
 	margin:auto;
 }
 
-#commands-box div div:active{
-	background:#ccc;
+#commands-box div div.bg-dark{
+	font-size:3vmin;
+	font-weight:bold;
+}
+
+#commands-box div div:not(.bg-dark){
+	border-radius:10px;
+	background-image:linear-gradient(lightcyan,white);
+	border: 3px inset #227;
+	font-size:3vmin;
+	cursor: pointer;
 }
 
 .pathTile{
@@ -134,65 +135,57 @@
 	pointer-events: none;
 }
 
-#map-selection{
+#map_selection{
 	color:white;
-	margin:20px;
-	padding:20px;
-	background:	#c23;
-	display:inline-block;
+	background:	#a12;
+	display:inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin:auto;
 	border:3px inset lightslategray; 
 	border-radius:5px;
 }
 
-.map-option{
+.map_option{
 	color:black;
-	margin:10px;
-	padding:10px 20px;
 	background:white;
 	border:1px solid black;
 	border-radius:5px;
 }
 
-.map-container{
-	padding:10px;
+#map_container{
 	background:darkgrey;
 	overflow-y: auto;
-	max-height:180px;
 	border-radius:5px;
-	border:3px solid black; 
+	border:2px solid black; 
+}
+
+#fry-count{
+	font-weight:bold;
+	color:white;
+	text-shadow:1px 1px black, 0px 1px black, -1px 1px black,
+	1px -1px black, 0px -1px black, -1px -1px black,
+	1px 0px black, -1px 0px black;    	 
+}
+
+.p-0.col-2:not(.pathTile):not(.patator):not(.bg-secondary):not(.broken_glass):not(.potato_field):not(.sniper){
+	background-image: url('img/grass.png');
+	background-size: 100%;
+}
+
+.potato_field > div{
+	color:white;
+	font-weight:bold;
 }
 
 /*small...*/
 @media (min-width: 576px){
-#commands-box, #play-box{
-	height:100%;
-}
-
-#play-box{
-	height:100%;
-}
-
 
 #commands-box{
 	border-top :none;
 	border-left:double 3px black;
 	font-size:initial;
-}
-
-
-#commands-box > div
-{
-	height:50%;
-}
-
-#commands-box div div
-{
-	height:50%;
-}
-
-#play-box > div{
-	height:calc(10vmin - 1px);
-	width:60vmin;
 }
 
 #oil_rain{
@@ -213,41 +206,21 @@
 
 }
 
-#fry-count{
-	font-weight:bold;
-	color:white;
-	text-shadow:1px 1px black, 0px 1px black, -1px 1px black,
-	1px -1px black, 0px -1px black, -1px -1px black,
-	1px 0px black, -1px 0px black;    	 
+/*iPhone5 et moins horizontalement*/
+@media (max-height: 325px){
+	
+	#oil_rain{
+		background:url('img/oil_rain.png');
+		z-index:1001;
+		position:absolute;
+		background-size:100%;
+		width:60vmin;
+		height:calc(80vmin - 8px);
+		pointer-events: none;
+	}
 }
 
-.p-0.col-2:not(.pathTile):not(.patator):not(.bg-secondary):not(.broken_glass):not(.potato_field):not(.sniper){
-	background-image: url(img/grass.png);
-	background-size: 100%;
-}
 
-.col-3.col-sm-6:not(.text-right),.col-3.col-sm-12{
-	display:flex;
-	align-items:center;
-	justify-content: center;
-}
-
-.col-3.col-sm-12{
-	background-color:#333;
-	color:white;
-}
-
-.col-3.col-sm-6{
-	border-radius:10px;
-	background-image:linear-gradient(lightcyan,white);
-	border: 3px inset #227;
-	cursor: pointer;
-}
-
-.potato_field > div{
-	color:white;
-	font-weight:bold;
-}
 
 
 
