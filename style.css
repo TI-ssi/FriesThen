@@ -27,8 +27,6 @@
 #play-box{
 	position:relative;
 	top:0;
-	width:100%;
-	height:80%;
 	overflow:hidden;
 	background: #DDD;
 }
@@ -38,7 +36,6 @@
 	background:lightslategray;
 	margin:auto;
 	width: calc(95% - 10px);
-	height:20%;
 	font-size:0.6em;
 }
 
@@ -130,8 +127,6 @@
 	z-index:1001;
 	position:absolute;
 	background-size:100%;
-	width:81vmin;
-	height:calc(108vmin - 8px);
 	pointer-events: none;
 }
 
@@ -193,8 +188,6 @@
 	z-index:1001;
 	position:absolute;
 	background-size:100%;
-	width:60vmin;
-	height:calc(80vmin - 8px);
 	pointer-events: none;
 }
 
@@ -204,20 +197,6 @@
 /*medium...*/
 @media (min-width: 768px){
 
-}
-
-/*iPhone5 et moins horizontalement*/
-@media (max-height: 325px){
-	
-	#oil_rain{
-		background:url('img/oil_rain.png');
-		z-index:1001;
-		position:absolute;
-		background-size:100%;
-		width:60vmin;
-		height:calc(80vmin - 8px);
-		pointer-events: none;
-	}
 }
 
 
