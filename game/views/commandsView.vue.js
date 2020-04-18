@@ -10,7 +10,7 @@ export default{
     data: function (){
       return{
         game : Game.state,
-        commandBoxClass: this.getCommandBoxClass(window.screen.width/window.screen.height>1)
+        commandBoxClass: this.getCommandBoxClass(window.innerWidth/window.innerHeight>1)
       }
     },
     components:{
@@ -31,7 +31,7 @@ export default{
     methods:{
 
       handleChange(){
-        let isHorizontal=window.screen.width/window.screen.height>1;
+        let isHorizontal=window.innerWidth/window.innerHeight>1;
         this.commandBoxClass=this.getCommandBoxClass(isHorizontal);
       },
       getCommandBoxClass:function(isHorizontal){

@@ -6,7 +6,7 @@ export default {
       return{
       game : Game.state,
       text : Game.locale.text,
-      styles: this.getStyles(window.screen.width/window.screen.height)
+      styles: this.getStyles(window.innerWidth/window.innerHeight)
       }
     },
     created(){
@@ -23,7 +23,7 @@ export default {
     methods:{
 
       handleChange(){
-        this.styles=this.getStyles(window.screen.width/window.screen.height);
+        this.styles=this.getStyles(window.innerWidth/window.innerHeight);
       },
       getStyles:function(screenRatio){
         return {
