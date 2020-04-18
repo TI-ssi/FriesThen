@@ -29,27 +29,27 @@ export default {
 		},
 		getPlayBoxClass:function(isHorizontal){
 			if(isHorizontal)
-				return "col-9 text-center h-100";
+				return "col-9 col-sm-9 col-md-9 col-lg-9 text-center h-100";
 			else
-				return "text-center w-100 h-75"
+				return "text-center h-75 w-100"
 		},
 		getDims(isRow){
 			let rowWidth=0;
 			let rowHeight=0;
 			if(this.widthScreen>this.heightScreen)
 			{
-				rowHeight=Math.round(this.heightScreen*.93/8);
+				rowHeight=Math.round(this.heightScreen*.91/8);
 				rowWidth=Math.round(rowHeight*6);
 			}
 			else
 			{
-				if(8*0.93*this.widthScreen/6>0.75*this.heightScreen)
+				if(8*this.widthScreen/6>0.75*this.heightScreen)
 				{
-					rowHeight=Math.round(0.75*this.heightScreen*.93/8);
+					rowHeight=Math.round(0.75*this.heightScreen*.91/8);
 					rowWidth=Math.round(rowHeight*6);
 				}
 				else{
-					rowWidth=Math.round(this.widthScreen*.93);
+					rowWidth=Math.round(this.widthScreen*.91);
 					rowHeight=Math.round(rowWidth/6);
 				}				
 			}

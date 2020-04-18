@@ -34,9 +34,9 @@ export default{
       },
       getCommandBoxClass:function(isHorizontal){
         if(isHorizontal)
-          return "col-3 text-center h-100";
+          return "col-3 col-sm-3 col-md-3 col-lg-3 text-center h-100";
         else
-          return "text-center h-25 col-12"
+          return "text-center h-25 col-12 col-sm-12 col-md-12 col-lg-12"
       }
   
     },
