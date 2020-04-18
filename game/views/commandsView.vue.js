@@ -21,10 +21,12 @@ export default{
       itemTile: commandItem
     },
     created(){
-      window.addEventListener("resize", this.handleChange);
+      //window.removeEventListener("resize", this.handleChange);
+      $(window).on("resize orientationchange", this.handleChange);
     },
     destroyed(){
-      window.removeEventListener("resize", this.handleChange);
+      //window.removeEventListener("resize", this.handleChange);
+      $(window).off("resize orientationchange", this.handleChange);
     },
     methods:{
 
