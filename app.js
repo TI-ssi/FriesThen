@@ -5,12 +5,14 @@ import start from './game/screens/start.vue.js';
 import credits from './game/screens/credits.vue.js';
 import play from './game/screens/play.vue.js';
 import end from './game/screens/end.vue.js';
+import difficulty from './game/screens/difficulty.vue.js';
 
 var vm = new Vue({
     el: '#app',
     components : {
 	startScreen : start,
-	playScreen : play,
+    playScreen : play,
+    difficultyScreen: difficulty,
 	gameOverScreen : end,
 	creditScreen : credits,
     },

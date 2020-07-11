@@ -9,7 +9,8 @@ import commandItem from './commandsItem.vue.js';
 export default{
     data: function (){
       return{
-	game : Game.state
+        game : Game.state,
+        commandBoxClass: this.getCommandBoxClass(window.innerWidth/window.innerHeight>1)
       }
     },
     components:{
@@ -19,8 +20,30 @@ export default{
 	lastPathTile: commandLast,
 	itemTile: commandItem
     },
-    template : `
-    <div id="commands-box" class="text-center col-12 col-sm-3">	
+    created(){
+      //window.removeEventListener("resize", this.handleChange);
+      $(window).on("resize orientationchange", this.handleChange);
+    },
+    destroyed(){
+      //window.removeEventListener("resize", this.handleChange);
+      $(window).off("resize orientationchange", this.handleChange);
+    },
+    methods:{
+
+      handleChange(){
+        let isHorizontal=window.innerWidth/window.innerHeight>1;
+        this.commandBoxClass=this.getCommandBoxClass(isHorizontal);
+      },
+      getCommandBoxClass:function(isHorizontal){
+        if(isHorizontal)
+          return "col-3 col-sm-3 col-md-3 col-lg-3 text-center h-100";
+        else
+          return "text-center h-25 col-12 col-sm-12 col-md-12 col-lg-12"
+      }
+  
+    },
+    template :`    
+    <div id="commands-box" :class=commandBoxClass>	
      	<component class="row" v-bind:is="game.commandView"></component>  
     </div>
     `

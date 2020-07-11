@@ -30,14 +30,62 @@ export default{
 	      },
     },
     methods:{
-          hasItem:function(){
+		hasItem:function(){
 	        if(!(this.game.defenses[this.id] === undefined)){
 		       return this.game.defenses[this.id];
 		}else{
 			return false;
 		}
-		;//&& !this.isSelected;
-	}
+		//&& !this.isSelected;
+		},
+		rangeStyle:function(){
+			let u = this.hasItem().currentUpgrade;
+			let name=this.hasItem().name;
+			let baseSizeInc=0, upgradeBonus=100;
+			switch(name){
+				case 'patator': baseSizeInc=300;break;
+				case 'sniper': baseSizeInc=500;
+			}
+			let sizeInc = baseSizeInc+upgradeBonus*u;
+			let offsetInc = -(sizeInc - 100)/2;
+			return {
+				background:`rgba(${u*80}, ${255-u*80}, 128, 0.5)`,
+				width: sizeInc+'%',
+				height: sizeInc+'%',
+				top: offsetInc +'%',
+				left: offsetInc +'%'
+			}
+		},
+		firingBarWidth:function(){
+			if(this.hasItem().name=='patator')
+				return this.hasItem().passedTick/90*100+'%';
+			else{
+				if(this.hasItem().name=='sniper')
+					return this.hasItem().passedTick/150*100+'%';
+			}
+		},
+
+		defenseStyle:function(){
+			let backgroundUrl = "";
+			let defensename=this.hasItem().name;
+			if(defensename=='patator'){
+				switch(this.hasItem().currentUpgrade){
+					case 0: backgroundUrl = 'img/patator.png';break;
+					case 1: backgroundUrl = 'img/patator-v2.png';break;
+					case 2: backgroundUrl = 'img/patator-v3.png';
+				}
+			}
+			else if(defensename == 'sniper')
+				backgroundUrl='img/sniper.png';
+
+			else if(defensename == 'potato_field')
+				backgroundUrl='img/champ_patate.png';
+
+			return {
+				"background-image": 'url('+backgroundUrl+')',
+				transform:'rotate('+this.hasItem().rot+'deg)'
+			}
+		}
     },
     mounted:function(){
 	if(this.isPath){
@@ -54,19 +102,21 @@ export default{
     },
     template:`
     <div class="p-0" v-bind:id="id" v-bind:ref="id"  v-on:click.stop="iGame.selected(x, y)" v-bind:class="{'pathTile' : isPath && !isSelected, 'bg-secondary' : isSelected, 'firstPathTile' : isFirst && !isSelected && !hasItem(), 'lastPathTile' : isLast && !isSelected, 'defense': hasItem()}">
-        <div class="row col m-auto p-0" v-if="hasItem()" v-bind:class="hasItem().name" v-bind:style="{transform:'rotate('+hasItem().rot+'deg)'}">
+        <div class="row col m-auto p-0" v-if="hasItem()" v-bind:class="hasItem().name" v-bind:style="defenseStyle()">
 	<div v-if="hasItem().name == 'potato_field'">
 	{{ hasItem().count }}
 	</div>
 	<span v-else>&nbsp;</span>
-        </div>
+	</div>
 	
-	<div class="range" v-if="hasItem() && !isPath && isSelected" >&nbsp;</div>
+	<div class="range"
+	v-bind:style="rangeStyle()"	
+	v-if="hasItem() && !isPath && isSelected" >&nbsp;</div>
         <div class="bg-secondary" v-if="hasItem() && !isPath" style="width:50%;margin:auto;">
-	    <div class="firingBar" v-bind:style="{width:hasItem().passedTick/90*100+'%'}">
+	    <div class="firingBar" v-bind:style="{width:firingBarWidth()}">
        	    </div>
 	</div>
-    	<span v-else-if="isLast">{{ game.frites }}F</span>
+    	<span id="fry-count" v-else-if="isLast">{{ game.frites }}F</span>
 	<div v-else-if="!hasItem()">&nbsp;</div>
     </div>
     `

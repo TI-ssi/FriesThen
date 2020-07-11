@@ -13,7 +13,7 @@ class WaveFactory{
 	this.currentWave = new SingleWave(gameState, ++this.waveNb);
     }
 
-    stop(state){
+    stop(state){    
 	this.currentWave.stop(state);
     }
 }

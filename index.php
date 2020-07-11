@@ -1,3 +1,5 @@
+<?php $ver = '0.4.0'; ?>
+
 <!doctype html>
 <html>
     <head>
@@ -13,7 +15,17 @@
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-	<link rel="stylesheet" href="style.css">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52934533-4"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-52934533-4');
+	</script>
+
+	<link rel="stylesheet" href="style.css?v=<?=$ver;?>">
   </head>
 
   <body>
@@ -22,8 +34,8 @@
 	    <component v-bind:is="game.screen+'-screen'"></component>  
 	</div>
     </div>
-    <div id="version">v. 0.3.0</div>
+    <div id="version">v. <?=$ver;?></div>
 
-    <script src="app.js" type="module"></script>
+    <script src="app.js?v=<?=$ver;?>" type="module"></script>
   </body>
 </html>

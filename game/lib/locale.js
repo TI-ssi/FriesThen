@@ -13,7 +13,7 @@ export default class {
 	$.getJSON( './game/locale/'+lang+'.json', function( json ) {
 	    $.each(json, function(i, v){
 		text[i] = v;
-	    });
+		});
 	});
     }
 

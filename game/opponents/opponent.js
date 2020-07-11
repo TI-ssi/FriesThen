@@ -1,21 +1,22 @@
-import {Game} from './game.js';
+import {Game} from '../lib/game.js';
 
 export default class {
 
 constructor(
-    startingLife
+    startingLife,speedCoeff,animalId
 ){
     this.x = Game.state.map.meta[Game.state.map.path[0]].x + Game.state.map.meta[Game.state.map.path[0]].w / 2 ;
     this.y = -Game.state.map.meta[Game.state.map.path[0]].h/2;
-    this.id = Game.state.oppId++;;
+	this.animalId = animalId?animalId:0;
+	this.id=Game.state.oppId++;
     this.startingLife = startingLife;
-    this.life = startingLife;
-    this.speed = 2 * Game.state.map.meta[Game.state.map.path[0]].h / 100;
+	this.life = startingLife;
+    this.speed = speedCoeff * Game.state.map.meta[Game.state.map.path[0]].h / 100;
     this.wasOn = null;
     this.isOn = null;
     this.beforeCenter = true;
     this.heading = 2;
-    this.comingFrom = 2;
+	this.comingFrom = 2;
 }    
     loseLife(hit){
 	this.life-=hit;
@@ -67,9 +68,9 @@ constructor(
 	    && t.y >= tile.y && t.y < tile.yy) {
 		t.isOn = i;
 		if(t.beforeCenter
-		   &&   ((t.y < (tile.y + (tile.h / 2))  && t.comingFrom == 0)
+		   &&   ((t.y < (tile.y + (tile.h / 2)-7)  && t.comingFrom == 0)
 		       || (t.x > (tile.x + (tile.w / 2)) && t.comingFrom == 1)
-		       || (t.y > (tile.y + (tile.h / 2)) && t.comingFrom == 2)
+		       || (t.y > (tile.y + (tile.h / 2)-7) && t.comingFrom == 2)
 		       || (t.x < (tile.x + (tile.w / 2)) && t.comingFrom == 3)
 		      )
 		){
@@ -80,7 +81,7 @@ constructor(
 		}
 		
 		if (t.wasOn != t.isOn){
-		    if(!(Game.state.defenses[Game.state.map.path[t.isOn]] === undefined)){
+		    if(!(Game.state.defenses[Game.state.map.path[t.isOn]] === undefined) && this.id!=1){
 			Game.state.defenses[Game.state.map.path[t.isOn]].stepOn(t);
 		    }
 		    t.wasOn = t.isOn;

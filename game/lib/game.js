@@ -1,9 +1,10 @@
 import {Wave} from './wave.js';
-import Opponent from './opponent.js';
+import Opponent from '../opponents/opponent.js';
 
 import defenseBrokenGlass from '../defenses/broken_glass.js';
 import defensePatator from '../defenses/patator.js';
 import defensePotatoField from '../defenses/potatoField.js';
+import defenseSniper from '../defenses/sniper.js';
 
 /* ideas
     atomic ketchup
@@ -28,15 +29,18 @@ class GameState{
     constructor(){    
       this.state = {
 	  paused: true,
-	  intervalHandle : null,      
+	  intervalHandle : null, 
+	  oppId:0,     
 	  screen : 'start',
 	  frites : 10,
 	  cash   : 100,
 	  selectedTile:'0',
 	  commandView:'general',
 	  waving: false,
+	  rainTime:0,
 	  wave : 0,
-	  oppId: 0,
+	  mapCount:0,
+	  currentMap:0,
 	  opponents:[],
 	  defenses:{}
       };
@@ -75,22 +79,32 @@ class GameState{
 	  }
     }
     
-      buy(item){
-	  if(this.state.defenses[this.state.selectedTile] === undefined) {
-	      if(this.state.cash >= 10 && item == 'broken_glass'){
-		  this.state.cash -= 10;
-		  Vue.set(this.state.defenses, this.state.selectedTile, new defenseBrokenGlass());
-	      } else if(this.state.cash >= 50 && item == 'patator') {
-		  this.state.cash -= 50;
-		  this.state.commandView = "itemTile";
-		  Vue.set(this.state.defenses, this.state.selectedTile, new defensePatator());
-	      } else if(this.state.cash >= 150 && item == 'potato_field') {
-		  this.state.cash -= 150;
-		  this.state.commandView = "itemTile";
-		  Vue.set(this.state.defenses, this.state.selectedTile, new defensePotatoField());
-	      }
-	  }
-      }
+	buy(item){
+
+		if(this.state.cash > 249 && item == "oil_rain"){
+			this.state.rainTime=1000;
+			this.state.cash -= 250;
+		}
+
+		if(this.state.defenses[this.state.selectedTile] === undefined) {
+			if(this.state.cash >= 10 && item == 'broken_glass'){
+			this.state.cash -= 10;
+			Vue.set(this.state.defenses, this.state.selectedTile, new defenseBrokenGlass());
+			} else if(this.state.cash >= 50 && item == 'patator') {
+			this.state.cash -= 50;
+			this.state.commandView = "itemTile";
+			Vue.set(this.state.defenses, this.state.selectedTile, new defensePatator());
+			} else if(this.state.cash >= 150 && item == 'potato_field') {
+			this.state.cash -= 150;
+			this.state.commandView = "itemTile";
+			Vue.set(this.state.defenses, this.state.selectedTile, new defensePotatoField());
+			} else if(this.state.cash >= 125 && item == 'sniper'){
+				this.state.cash -= 125;
+				this.state.commandView = "itemTile";
+				Vue.set(this.state.defenses, this.state.selectedTile, new defenseSniper());
+			}
+		}
+	}
 
     getState(){return this.state;}
   }

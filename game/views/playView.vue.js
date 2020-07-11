@@ -1,7 +1,7 @@
 import {Game} from '../lib/game.js';
 
-import tile from '../views/playTile.vue.js';
-import opponent from '../views/opponent.vue.js';
+import tile from './playTile.vue.js';
+import opponent from './opponent.vue.js';
 
 export default {
     data: function (){
