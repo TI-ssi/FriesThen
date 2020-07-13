@@ -1,4 +1,4 @@
-<?php $ver = '0.4.0'; ?>
+<?php $ver = '0.4.1'; ?>
 
 <!doctype html>
 <html>

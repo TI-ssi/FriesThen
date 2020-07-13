@@ -16,18 +16,20 @@ constructor(
     this.isOn = null;
     this.beforeCenter = true;
     this.heading = 2;
-	this.comingFrom = 2;
+    this.comingFrom = 2;
+    this.distance = 0;
 }    
     loseLife(hit){
 	this.life-=hit;
 	if(this.life <= 0){
 	    Game.state.cash++;
 	    this.die();
-	    return false;
-	}
+	   return false;
+	}7
 	return this;
     }
     move(){
+	this.distance+=this.speed;
 	if(this.beforeCenter) {
 	    switch(this.comingFrom){
 	    case 0:
