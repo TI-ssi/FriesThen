@@ -111,6 +111,8 @@ export default class {
 		  $.each(state.opponents, function(i,o){
 		      if(o) o.move();
 		  });
+		  //check whose first
+		  state.opponents.sort((a,b) => (a.distance < b.distance) ? 1 : -1);
 		  $.each(state.defenses, function(i,d){
 		      d.attack(state.opponents);
 		  });
