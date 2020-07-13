@@ -99,7 +99,7 @@ export default {
                     </div>                    
                   </div><br>
                   <button :style=styles.btnSuccessStyle v-on:click="loadMap(0)" class="btn btn-success btn-lg">{{ text.alea }}</button><br>
-                  <button :style=styles.btnSecStyle v-on:click="game.screen = 'credit'" class="btn btn-secondary btn-lg">{{ text.credits }}</button>
+                  <button :style=styles.btnSecStyle v-on:click="game.screen = 'credits'" class="btn btn-secondary btn-lg">{{ text.credits }}</button>
             </div>
           </div>`
   } 

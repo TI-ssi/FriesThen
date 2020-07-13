@@ -18,11 +18,11 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52934533-4"></script>
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+ 	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
 
-	gtag('config', 'UA-52934533-4');
+	  gtag('config', 'UA-52934533-4');
 	</script>
 
 	<link rel="stylesheet" href="style.css?v=<?=$ver;?>">
@@ -31,7 +31,7 @@
   <body>
     <div id="app">
   	<div class="gamescreen">
-	    <component v-bind:is="game.screen+'-screen'"></component>  
+	    <component v-bind:is="screen"></component>  
 	</div>
     </div>
     <div id="version">v. <?=$ver;?></div>
