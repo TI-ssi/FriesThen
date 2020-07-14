@@ -15,7 +15,7 @@ var vm = new Vue({
 	      * I may doing it the wrong way here but didnt find another working way at the time
 	      */
 	    let screen = this.game.screen;
-	    return () => import(`./game/screens/${screen}.vue.js`);
+	    return () => import(`./game/screens/${screen}.vue.js?v=1`);
 	}
     },
     beforeCreate: function(){

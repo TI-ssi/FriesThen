@@ -61,20 +61,6 @@ export default {
             fontSize:'3vmin'
           }
         }
-      },
-      loadMap:function(map_ind){
-          $.getJSON( './game/maps/maps.json', function( json ) {
-                      
-            if(!map_ind)
-            {
-              let mapCount=Game.state.mapCount; 
-              map_ind = 1 + Math.floor(mapCount*Math.random());
-            } 
-            
-            Game.state.currentMap=map_ind;
-            Game.state.map = json[map_ind-1];
-            Game.state.screen='difficulty';
-        })
       }
     } ,
     template : `
@@ -85,20 +71,7 @@ export default {
                     <b><div :style=styles.welcomeTitleStyle>{{ text.welcome_title }}</div></b>
                     <div :style=styles.welcomeDescStyle>{{ text.welcome_desc }} </div>
                   </div>
-                  <div id="map_selection" :style=styles.mapSelectStyle> 
-                    <span id="map_title" :style=styles.mapTitleStyle>{{text.selectMap}}</span>
-                    <div id="map_container" :style=styles.mapContainerStyle>
-                      <div class="map_option" :style=styles.mapOptionStyle v-for="indmap in game.mapCount">                    
-                        <b>
-                          {{ text.map }} #{{ indmap }} &nbsp;
-                          <button v-on:click="loadMap(indmap)">
-                            {{text.select}}
-                          </button>
-                        </b>
-                      </div>
-                    </div>                    
-                  </div><br>
-                  <button :style=styles.btnSuccessStyle v-on:click="loadMap(0)" class="btn btn-success btn-lg">{{ text.alea }}</button><br>
+	          <button :style=styles.btnSecStyle v-on:click="game.screen = 'difficulty'" class="btn btn-success btn-lg">{{ text.go }}</button>
                   <button :style=styles.btnSecStyle v-on:click="game.screen = 'credits'" class="btn btn-secondary btn-lg">{{ text.credits }}</button>
             </div>
           </div>`

@@ -1,4 +1,4 @@
-<?php $ver = '0.4.1'; ?>
+<?php $ver = time(); ?>
 
 <!doctype html>
 <html>

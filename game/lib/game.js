@@ -27,7 +27,8 @@ fatigue ou bersek quand moins de vie
 
 class GameState{
     constructor(){    
-      this.state = {
+	this.state = {
+	    version: $('#version').val(),
 	  paused: true,
 	  intervalHandle : null, 
 	  oppId:0,     
@@ -40,7 +41,7 @@ class GameState{
 	  rainTime:0,
 	  wave : 0,
 	  mapCount:0,
-	  currentMap:0,
+	  currentMap:1,
 	  opponents:[],
 	  defenses:{}
       };
