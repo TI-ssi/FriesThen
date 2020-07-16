@@ -1,6 +1,6 @@
 import {Game} from '../lib/game.js';
 
-import playView from '../views/playview.vue.js';
+import playView from '../views/playView.vue.js';
 import commandsView from '../views/commandsView.vue.js';
 
 export default{

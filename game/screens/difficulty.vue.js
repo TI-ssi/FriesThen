@@ -5,8 +5,8 @@ export default {
     data: function (){
       return{
         game : Game.state,
-          text : Game.locale.text,
-	        styles: this.getStyles(window.innerWidth/window.innerHeight)
+        text : Game.locale.text,
+        styles: this.getStyles(window.innerWidth/window.innerHeight)
 
       }
     },
