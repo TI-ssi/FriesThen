@@ -10,19 +10,25 @@ export default {
 
       }
     },
+    beforeDestroy : function(){
+	//this is called on "start" button press
+	//load map before destroying screen and creating next screen
+	$.getJSON( './game/maps/maps.json', function( json ) {            
+            Game.state.map = json[Game.state.currentMap-1];
+        })
+    },
     methods:{
 	loadMap:function(map_ind){
-          $.getJSON( './game/maps/maps.json', function( json ) {
-                      
+            //if no map_ind then random          
             if(!map_ind)
             {
               let mapCount=Game.state.mapCount; 
               map_ind = 1 + Math.floor(mapCount*Math.random());
             } 
-            
+
+	    //register map_ind for loading purpose later
             Game.state.currentMap=map_ind;
-            Game.state.map = json[map_ind-1];
-        })
+        
       },
       getStyles:function(screenRatio){
         return {
