@@ -7,5 +7,6 @@
   */
 
 return [
-       'ver' => '';
+       'ver' => '',
+       'debug' => false       
 ]
