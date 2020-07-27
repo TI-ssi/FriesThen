@@ -41,17 +41,12 @@ export default {
             marginBottom: screenRatio>1?'2vmin':'2vmax'
           },
           mapSelectStyle:{
-            width: screenRatio>1?1/screenRatio*55+'vmax':'60vmin',
-            height: screenRatio>1?'45vmin':'35vmax',
+            width: screenRatio>1?1/screenRatio*68+'vmax':'60vmin',
+            height: screenRatio>1?'38vmin':'28vmax',
           },
           mapTitleStyle:{
             fontSize:'4vmin',
-            marginBottom:'3vmin'
-          },
-          mapContainerStyle:{
-            width: '80%',
-            padding:'2vmin',
-            maxHeight:screenRatio>1?'40vmin':'48vmin'
+            marginBottom:'2vmin'
           },
           mapOptionStyle:{
             fontSize:'3vmin',
@@ -71,24 +66,22 @@ export default {
           <div class="d-flex justify-content-center align-items-center">
             <div id="start-screen" class="text-center d-flex-col justify-content-center align-items-center">
          	 <div id="map_selection" :style=styles.mapSelectStyle> 
-        <span id="map_title" :style=styles.mapTitleStyle>{{text.selectMap}}</span>
-	
-                    <div id="map_container" :style=styles.mapContainerStyle>
-                      <div class="map_option" :style=styles.mapOptionStyle v-for="indmap in game.mapCount">                    
+                      <span id="map_title" :style=styles.mapTitleStyle>{{text.selectMap}}</span>
+	<div class="row">
+                      <div class="map_option col-sm-4 offset-sm-0 col-8 offset-2 mb-1" :style=styles.mapOptionStyle v-for="indmap in game.mapCount"  v-on:click="loadMap(indmap)">                    
                         <b>
-	<span v-if="indmap == game.currentMap">*</span>
-                          {{ text.map }} #{{ indmap }} &nbsp;
-                          <button v-on:click="loadMap(indmap)">
-                            {{text.select}}
-                          </button>
+	                  <span v-if="indmap == game.currentMap">*</span>
+                          {{ text.map }} #{{ indmap }} &nbsp;              
                         </b>
         </div>
+	</div>
 	              <div class="map_option" :style=styles.mapOptionStyle>                    
                         <b>
 	                  <button :style=styles.btnSuccessStyle v-on:click="loadMap(0)" class="btn btn-success">{{ text.alea }}</button>
-        </b></div>
-        </div>                    
-        </div><br>
+                        </b>
+             	      </div>
+        
+                 </div><br>
 	
 
                   
