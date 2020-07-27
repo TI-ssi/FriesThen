@@ -1,4 +1,4 @@
-<?php $ver = time(); ?>
+<?php require_once('setup.php'); ?>
 
 <!doctype html>
 <html>
