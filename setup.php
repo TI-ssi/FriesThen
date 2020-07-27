@@ -8,4 +8,4 @@ if($config['debug']) {
   error_reporting(E_ALL);
 }
 
-$ver = empty($config['ver'])? $config['ver'] : time();
+$ver = !empty($config['ver'])? $config['ver'] : time();
