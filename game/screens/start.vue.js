@@ -64,7 +64,11 @@ export default {
       }
     } ,
     template : `
-          <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
+		<audio autoplay loop>
+	        <source src="./game/musics/menu.mp3" type="audio/mpeg">
+	        </audio> 
+
             <btn-select-lang class="text-right fixed-top mt-4 mr-3 mr-md-5"></btn-select-lang>
             <div id="start-screen" class="text-center">
                   <div>

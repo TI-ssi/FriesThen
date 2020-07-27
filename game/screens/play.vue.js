@@ -18,7 +18,10 @@ export default {
           commandsView : commandsView
       },
       template : `
-          <div class="row m-auto">
+        <div class="row m-auto">
+	<audio autoplay loop>
+	<source src="./game/musics/defense-loop.mp3" type="audio/mpeg">
+	</audio> 
       		  <play-view></play-view>
 		  <commands-view></commands-view>
             </div>`

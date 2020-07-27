@@ -23,6 +23,11 @@ export default {
         </div><br>
 
         <div>
+          <b>Musics from </b><br />
+          https://www.fesliyanstudios.com
+        </div><br />
+
+        <div>
           <b>{{ text.graphics }}</b><br />
           William Lapierre
         </div><br />
