@@ -46,7 +46,7 @@ export default {
 			</div>			
 		</div>	
 		<div :class=commandClass>
-	DMG: {{ defense().dammage() }}
+	<span v-if="defense().dammage() > 0">DMG: {{ defense().dammage() }}</span>
 		</div>
 		<div :class=commandClass v-if="!isHorizontal">
 				

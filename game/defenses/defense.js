@@ -39,7 +39,7 @@ export default class{
     }
 
     dammage(){
-	return 'N/A'; 
+	return 0; 
     }
     
 }
