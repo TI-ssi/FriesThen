@@ -21,6 +21,11 @@ export default class extends Defense{
 			opp.loseLife(1+this.currentUpgrade);
 			}
 		}
-	}
+    }
+
+    
+    dammage(){
+	return (this.currentUpgrade+1);
+    }
 
 }
