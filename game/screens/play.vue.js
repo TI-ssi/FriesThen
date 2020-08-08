@@ -7,11 +7,12 @@ export default {
     data: function (){
       return{
           game : Game.state,
+	  audio : Game.audio,
           tick : Game.tick,
       }
     },
       mounted: function (){
-        
+          this.audio.setMusic('defense-loop.mp3');
       },
       components: {
           playView : playView,
@@ -19,9 +20,6 @@ export default {
       },
       template : `
         <div class="row m-auto">
-	<audio autoplay loop>
-	<source src="./game/musics/defense-loop.mp3" type="audio/mpeg">
-	</audio> 
       		  <play-view></play-view>
 		  <commands-view></commands-view>
             </div>`
