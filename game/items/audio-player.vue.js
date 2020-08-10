@@ -17,11 +17,10 @@ Vue.component('audioPlayer' , {
 	console.log(document.getElementById("audioPlayer"));
 	Game.audio.playing = false;*/
     },
-    template : `<div>
-	<span v-on:click="audio.toggle()">
+    template : `<div id="audio-btn" v-on:click="audio.toggle()">
 	    <i v-if="audio.paused" class="fas fa-volume-off"></i>
 	    <i v-else class="fas fa-volume-up"></i>
-        </span>
+        
     </div>`
   })
 
