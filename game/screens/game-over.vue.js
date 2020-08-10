@@ -6,7 +6,7 @@ import '../items/return_home.vue.js';
 export default {
     data: function (){
       return{
-        game : Game.state,
+          game : Game.state,
 	  text : Game.locale.text,
 	  wave : Wave,
 	  audio : Game.audio

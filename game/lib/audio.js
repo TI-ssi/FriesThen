@@ -2,6 +2,7 @@ export default class {
     constructor(){
 
 	this.player = document.createElement('AUDIO');
+	this.player.loop = true;
 
 	this.setMusic('menu.mp3');
 	this.player.play();
