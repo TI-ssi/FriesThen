@@ -8,11 +8,13 @@ export default {
       return{
         game : Game.state,
 	  text : Game.locale.text,
-	  wave : Wave
+	  wave : Wave,
+	  audio : Game.audio
       }
     },
     mounted: function (){
 	this.wave.stop(this.game);
+	this.audio.setMusic('menu.mp3');
     },
     computed:{
       final: function(){ 
