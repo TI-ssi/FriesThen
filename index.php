@@ -30,11 +30,12 @@
 
   <body>
     <div id="app">
+     	<audio-player></audio-player>
   	<div class="gamescreen">
-	    <component v-bind:is="screen"></component>  
-	</div>
+	    <component v-bind:is="screen"></component>
+	</div>	
     </div>
-    <div id="version">v. <?=$ver;?></div>
+    <div id="version">v. <span><?=$ver;?></span></div>
 
     <script src="app.js?v=<?=$ver;?>" type="module"></script>
   </body>

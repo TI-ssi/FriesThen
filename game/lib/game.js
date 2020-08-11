@@ -14,21 +14,17 @@ import defenseSniper from '../defenses/sniper.js';
     bonus de wave lie au frittes restante
     bonus spontane en cours de wave (mob defi etc)
 
-    tour sniper
     tour ralentissante
     tour laser en continu
     tour de buff
 
     champs de patate! def sur chemin, bank ailleur
-
-barre de vie avec visuel pour type dennemi.
-fatigue ou bersek quand moins de vie
  */
 
 class GameState{
-    constructor(){    
+    constructor(){
 	this.state = {
-	    version: $('#version').val(),
+	  version: $('#version').find('span').text(),
 	  paused: true,
 	  intervalHandle : null, 
 	  oppId:0,     
@@ -44,7 +40,7 @@ class GameState{
 	  currentMap:1,
 	  opponents:[],
 	  defenses:{}
-      };
+	};
     }
     
     reset(){
