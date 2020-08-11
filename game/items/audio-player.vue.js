@@ -12,10 +12,7 @@ Vue.component('audioPlayer' , {
 	    this.audio.toggle();
 	}
     },
-    created : function(){/*
-	console.log($('#audioPlayer').prop('paused'));
-	console.log(document.getElementById("audioPlayer"));
-	Game.audio.playing = false;*/
+    created : function(){
     },
     template : `<div id="audio-btn" v-on:click="audio.toggle()">
 	    <i v-if="audio.paused" class="fas fa-volume-off"></i>

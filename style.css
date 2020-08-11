@@ -176,10 +176,13 @@
 
 #audio-btn{
     position: fixed;
-    min-width:1.5em;
+    width:1.5em;
     top :1.5em;
     left: 1.5em;
     z-index: 1100;
+    background: rgba(90,90,90,0.4);
+    border-radius:50%;
+    text-align:center;
 }
 
 /*small...*/
