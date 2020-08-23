@@ -51,6 +51,7 @@ class GameState{
 	  //objectNb = 0;
 	  this.state.opponents = [];
  	  this.state.defenses = {};
+ 	  //this.state.map.meta = {};
 	  Wave.reset();
     }
     

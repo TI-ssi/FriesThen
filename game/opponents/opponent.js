@@ -5,6 +5,7 @@ export default class {
 constructor(
     startingLife,speedCoeff,animalId
 ){
+    console.log(Game.state.map);
     this.x = Game.state.map.meta[Game.state.map.path[0]].x + Game.state.map.meta[Game.state.map.path[0]].w / 2 ;
     this.y = -Game.state.map.meta[Game.state.map.path[0]].h/2;
 	this.animalId = animalId?animalId:0;

@@ -25,10 +25,12 @@ export default class {
 
 	  //check game-over conditions
 	if(state.frites <= 0){//gameover
+	      self.stop(state);
 	      state.screen = 'game-over';
 	  }else if(state.waving == false && state.opponents.length <= 0){
 	      //waveover
 	      if(self.waveNb > 19){
+  		  self.stop(state);
 		  state.screen = 'game-over';
 	      } else {
 		  state.paused = true;

@@ -10,14 +10,16 @@ export default{
       }
     },
     computed: {
+	id:function(){
+	        return this.x+'-'+this.y;
+	      },
+
+    },
+    methods:{
     	      isSelected:function(){
 		return  this.game.selectedTile == this.x+'-'+this.y;
 	      },
-	      isPath:function(){
-	       return this.game.map.path.includes(this.x+'-'+this.y);
-	       //&& !this.isSelected; //to prevent overpassing selection
-	      },
-	      isFirst:function(){
+	isFirst:function(){
 	       return this.game.map.path[0] == (this.x+'-'+this.y)
 	       ;//&& !this.isSelected; //to prevent overpassing selection
 	      },
@@ -25,11 +27,12 @@ export default{
 	       return this.game.map.path[this.game.map.path.length-1] == (this.x+'-'+this.y)
 	       ;//&& !this.isSelected; //to prevent overpassing selection
 	      },
-	      id:function(){
-	        return this.x+'-'+this.y;
+	
+	      isPath:function(){
+	       return this.game.map.path.includes(this.x+'-'+this.y);
+	       //&& !this.isSelected; //to prevent overpassing selection
 	      },
-    },
-    methods:{
+
 		hasItem:function(){
 	        if(!(this.game.defenses[this.id] === undefined)){
 		       return this.game.defenses[this.id];
@@ -88,7 +91,20 @@ export default{
 		}
     },
     mounted:function(){
-	if(this.isPath){
+	if(this.isPath()){
+		Game.state.map.meta[this.id] = {
+		    x : this.$refs[this.id].offsetLeft - ( this.$refs[this.id].offsetWidth / 4 ),
+		    y : this.$refs[this.id].offsetTop - ( this.$refs[this.id].offsetHeight / 4 ),
+		    w : this.$refs[this.id].offsetWidth,
+		    h : this.$refs[this.id].offsetHeight,
+		    xx: this.$refs[this.id].offsetLeft + ( this.$refs[this.id].offsetWidth / 4 * 3 ),
+		    yy: this.$refs[this.id].offsetTop + ( this.$refs[this.id].offsetHeight /4 * 3 )
+		}
+	}
+	
+    },
+    updated:function(){
+	if(this.isPath()){
 		Game.state.map.meta[this.id] = {
 		    x : this.$refs[this.id].offsetLeft - ( this.$refs[this.id].offsetWidth / 4 ),
 		    y : this.$refs[this.id].offsetTop - ( this.$refs[this.id].offsetHeight / 4 ),
@@ -101,7 +117,7 @@ export default{
 	
     },
     template:`
-    <div class="p-0" v-bind:id="id" v-bind:ref="id"  v-on:click.stop="iGame.selected(x, y)" v-bind:class="{'pathTile' : isPath && !isSelected, 'bg-secondary' : isSelected, 'firstPathTile' : isFirst && !isSelected && !hasItem(), 'lastPathTile' : isLast && !isSelected, 'defense': hasItem()}">
+    <div class="p-0" v-bind:id="id" v-bind:ref="id"  v-on:click.stop="iGame.selected(x, y)" v-bind:class="{'pathTile' : isPath() && !isSelected(), 'bg-secondary' : isSelected(), 'firstPathTile' : isFirst() && !isSelected() && !hasItem(), 'lastPathTile' : isLast() && !isSelected(), 'defense': hasItem()}">
         <div class="row col m-auto p-0" v-if="hasItem()" v-bind:class="hasItem().name" v-bind:style="defenseStyle()">
 	<div v-if="hasItem().name == 'potato_field'">
 	{{ hasItem().count }}
@@ -111,12 +127,12 @@ export default{
 	
 	<div class="range"
 	v-bind:style="rangeStyle()"	
-	v-if="hasItem() && !isPath && isSelected" >&nbsp;</div>
-        <div class="bg-secondary" v-if="hasItem() && !isPath" style="width:50%;margin:auto;">
+	v-if="hasItem() && !isPath() && isSelected()" >&nbsp;</div>
+        <div class="bg-secondary" v-if="hasItem() && !isPath()" style="width:50%;margin:auto;">
 	    <div class="firingBar" v-bind:style="{width:firingBarWidth()}">
        	    </div>
 	</div>
-    	<span id="fry-count" v-else-if="isLast">{{ game.frites }}F</span>
+    	<span id="fry-count" v-else-if="isLast()">{{ game.frites }}F</span>
 	<div v-else-if="!hasItem()">&nbsp;</div>
     </div>
     `

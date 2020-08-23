@@ -8,7 +8,8 @@ var vm = new Vue({
     components : {
     },
     computed: {
-	screen() {
+	screen:function() {
+	    console.log('screen');
 	    /**
 	      * cant use var directly in import as it didnt see its changes
 	      * probably because this is computed.
@@ -17,6 +18,8 @@ var vm = new Vue({
 	      * I may doing it the wrong way here but didnt find another working way at the time
 	      */
 	    let screen = this.game.screen;
+	    	    console.log(screen);
+
 	    return () => import(`./game/screens/${screen}.vue.js?v=${this.game.version}`);
 	}
     },
