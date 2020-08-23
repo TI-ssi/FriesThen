@@ -39,7 +39,8 @@ class GameState{
 	  mapCount:0,
 	  currentMap:1,
 	  opponents:[],
-	  defenses:{}
+	    defenses:{},
+	    map:{}
 	};
     }
     

@@ -10,12 +10,13 @@ export default{
       }
     },
     computed: {
+	    },
+    methods:{
+
 	id:function(){
 	        return this.x+'-'+this.y;
 	      },
 
-    },
-    methods:{
     	      isSelected:function(){
 		return  this.game.selectedTile == this.x+'-'+this.y;
 	      },
@@ -34,8 +35,8 @@ export default{
 	      },
 
 		hasItem:function(){
-	        if(!(this.game.defenses[this.id] === undefined)){
-		       return this.game.defenses[this.id];
+	            if(!(this.game.defenses[this.id()] === undefined)){
+			return this.game.defenses[this.id()];
 		}else{
 			return false;
 		}
@@ -92,32 +93,32 @@ export default{
     },
     mounted:function(){
 	if(this.isPath()){
-		Game.state.map.meta[this.id] = {
-		    x : this.$refs[this.id].offsetLeft - ( this.$refs[this.id].offsetWidth / 4 ),
-		    y : this.$refs[this.id].offsetTop - ( this.$refs[this.id].offsetHeight / 4 ),
-		    w : this.$refs[this.id].offsetWidth,
-		    h : this.$refs[this.id].offsetHeight,
-		    xx: this.$refs[this.id].offsetLeft + ( this.$refs[this.id].offsetWidth / 4 * 3 ),
-		    yy: this.$refs[this.id].offsetTop + ( this.$refs[this.id].offsetHeight /4 * 3 )
+	    Game.state.map.meta[this.id()] = {
+		x : this.$refs[this.id()].offsetLeft - ( this.$refs[this.id()].offsetWidth / 4 ),
+		y : this.$refs[this.id()].offsetTop - ( this.$refs[this.id()].offsetHeight / 4 ),
+		w : this.$refs[this.id()].offsetWidth,
+		h : this.$refs[this.id()].offsetHeight,
+		xx: this.$refs[this.id()].offsetLeft + ( this.$refs[this.id()].offsetWidth / 4 * 3 ),
+		yy: this.$refs[this.id()].offsetTop + ( this.$refs[this.id()].offsetHeight /4 * 3 )
 		}
 	}
 	
     },
     updated:function(){
 	if(this.isPath()){
-		Game.state.map.meta[this.id] = {
-		    x : this.$refs[this.id].offsetLeft - ( this.$refs[this.id].offsetWidth / 4 ),
-		    y : this.$refs[this.id].offsetTop - ( this.$refs[this.id].offsetHeight / 4 ),
-		    w : this.$refs[this.id].offsetWidth,
-		    h : this.$refs[this.id].offsetHeight,
-		    xx: this.$refs[this.id].offsetLeft + ( this.$refs[this.id].offsetWidth / 4 * 3 ),
-		    yy: this.$refs[this.id].offsetTop + ( this.$refs[this.id].offsetHeight /4 * 3 )
+	    Game.state.map.meta[this.id()] = {
+		x : this.$refs[this.id()].offsetLeft - ( this.$refs[this.id()].offsetWidth / 4 ),
+		y : this.$refs[this.id()].offsetTop - ( this.$refs[this.id()].offsetHeight / 4 ),
+		w : this.$refs[this.id()].offsetWidth,
+		h : this.$refs[this.id()].offsetHeight,
+		xx: this.$refs[this.id()].offsetLeft + ( this.$refs[this.id()].offsetWidth / 4 * 3 ),
+		yy: this.$refs[this.id()].offsetTop + ( this.$refs[this.id()].offsetHeight /4 * 3 )
 		}
 	}
 	
     },
     template:`
-    <div class="p-0" v-bind:id="id" v-bind:ref="id"  v-on:click.stop="iGame.selected(x, y)" v-bind:class="{'pathTile' : isPath() && !isSelected(), 'bg-secondary' : isSelected(), 'firstPathTile' : isFirst() && !isSelected() && !hasItem(), 'lastPathTile' : isLast() && !isSelected(), 'defense': hasItem()}">
+    <div class="p-0" v-bind:id="id()" v-bind:ref="id()"  v-on:click.stop="iGame.selected(x, y)" v-bind:class="{'pathTile' : isPath() && !isSelected(), 'bg-secondary' : isSelected(), 'firstPathTile' : isFirst() && !isSelected() && !hasItem(), 'lastPathTile' : isLast() && !isSelected(), 'defense': hasItem()}">
         <div class="row col m-auto p-0" v-if="hasItem()" v-bind:class="hasItem().name" v-bind:style="defenseStyle()">
 	<div v-if="hasItem().name == 'potato_field'">
 	{{ hasItem().count }}
